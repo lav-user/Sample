@@ -14,7 +14,7 @@ pool:
 steps:
 - script: |
     echo "Starting Pipeline Execution."
-
+    ls -lrth
     echo "
     apiVersion: '2019-12-01'
     location: eastus
@@ -50,5 +50,5 @@ steps:
     tags: {}
     type: Microsoft.ContainerInstance/containerGroups" >>deploy-aci.yml
     cat deploy-aci.yml
-    az login
-    az container create --resource-group ADOProject_group --file deploy-aci.yaml
+   # az login
+    #az container create --resource-group ADOProject_group --file deploy-aci.yaml
