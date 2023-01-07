@@ -12,13 +12,16 @@ pool:
 
 # Set Up Project
 steps:
-echo "
-apiVersion: '2019-12-01'
-location: eastus
-name: file-share-demo
-properties:
-  containers:
-  - name: hellofiles
+- script: |
+    echo "Starting Pipeline Execution."
+    ls -lrth
+    echo "
+    apiVersion: '2019-12-01'
+    location: eastus
+    name: file-share-demo
+    properties:
+    containers:
+    - name: hellofiles
     properties:
       environmentVariables: []
       image: mcr.microsoft.com/azuredocs/aci-hellofiles
@@ -28,24 +31,24 @@ properties:
         requests:
           cpu: 1.0
           memoryInGB: 1.5
-      volumeMounts:
-      - mountPath: /aci/logs/
-        name: filesharevolume
-  osType: Linux
-  restartPolicy: Always
-  ipAddress:
-    type: Public
-    ports:
-      - port: 80
-    dnsNameLabel: aci-demo
-  volumes:
-  - name: filesharevolume
-    azureFile:
-      sharename: acishare
-      storageAccountName: <Storage account name>
-      storageAccountKey: <Storage account key>
-tags: {}
-type: Microsoft.ContainerInstance/containerGroups"
+     volumeMounts:
+     - mountPath: /aci/logs/
+       name: parasoftfiles
+      osType: Linux
+      restartPolicy: Always
+      ipAddress:
+        type: Public
+        ports:
+          - port: 80
+        dnsNameLabel: aci-demo
+      volumes:
+      - name: parasoftfiles
+        azureFile:
+          sharename: parasoftfiles
+          storageAccountName: adoproject
+          storageAccountKey: liZ+KvFZBAgxHMDkb8z7MdV9NPFfma0M0EjtgFLG2Yk2InBwwkJXjGfpe5r6Ljexn8XKOnif1rrg+AStdt6c/w==
+    tags: {}
+    type: Microsoft.ContainerInstance/containerGroups" >>deploy-aci.yml
     
     az login
     az container create --resource-group ADOProject_group --file deploy-aci.yml
