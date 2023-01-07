@@ -51,4 +51,4 @@ steps:
     type: Microsoft.ContainerInstance/containerGroups" >>deploy-aci.yml
     
     az login
-    az container create --resource-group ADOProject_group --file deploy-aci.yaml
+    az container create --resource-group ADOProject_group --file deploy-aci.yml
