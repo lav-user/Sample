@@ -18,6 +18,7 @@ steps:
     echo ${PWD}
     echo "Copy SOAtest project contents to volume directory."
     cp -R $(soatest.project) temp/.
+    
     ls -lrth
     cat <<'EOF' > deploy-aci.yml
     apiVersion: '2019-12-01'
@@ -115,6 +116,7 @@ steps:
     docker ps \
     echo -e "\nDebug -- Verify ./temp contents\n"
     ls -R $(pwd)/temp
+    
   displayName: Run Tests
   env:
     pwd: $(Build.Repository.LocalPath)
