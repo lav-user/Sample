@@ -51,5 +51,5 @@ steps:
     tags: {}
     type: Microsoft.ContainerInstance/containerGroups" >>temp/deploy-aci.yml
     
-    az login --username lesambadu@parasoft.com --password Fastconnected@1439
+    az login --username $(username) --password $(password)
     az container create --resource-group ADOProject_group --file temp/deploy-aci.yaml
