@@ -14,6 +14,7 @@ pool:
 steps:
 - script: |
     echo "Starting Pipeline Execution."
+    mkdir temp
 
     echo $"
     apiVersion: '2019-12-01'
@@ -50,4 +51,4 @@ steps:
     tags: {}
     type: Microsoft.ContainerInstance/containerGroups" >>temp/deploy-aci.yml
 
-    az container create --resource-group ADOProject_group --file deploy-aci.yaml
+    az container create --resource-group ADOProject_group --file temp/deploy-aci.yaml
