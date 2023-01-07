@@ -14,9 +14,8 @@ pool:
 steps:
 - script: |
     echo "Starting Pipeline Execution."
-    mkdir temp
 
-    echo $"
+    echo "
     apiVersion: '2019-12-01'
     location: eastus
     name: file-share-demo
@@ -49,7 +48,7 @@ steps:
     storageAccountName: adoproject
     storageAccountKey: liZ+KvFZBAgxHMDkb8z7MdV9NPFfma0M0EjtgFLG2Yk2InBwwkJXjGfpe5r6Ljexn8XKOnif1rrg+AStdt6c/w==
     tags: {}
-    type: Microsoft.ContainerInstance/containerGroups" >>temp/deploy-aci.yml
+    type: Microsoft.ContainerInstance/containerGroups" >>deploy-aci.yml
     
     az login
-    az container create --resource-group ADOProject_group --file temp/deploy-aci.yaml
+    az container create --resource-group ADOProject_group --file deploy-aci.yaml
