@@ -15,25 +15,25 @@ steps:
 - script: |
     echo "Starting Pipeline Execution."
     ls -lrth
-    echo "
+    cat <<'EOF' > deploy-aci.yml
     apiVersion: '2019-12-01'
     location: eastus
     name: file-share-demo
     properties:
-    containers:
-    - name: hellofiles
-    properties:
-      environmentVariables: []
-      image: mcr.microsoft.com/azuredocs/aci-hellofiles
-      ports:
-      - port: 80
-      resources:
-        requests:
-          cpu: 1.0
-          memoryInGB: 1.5
-     volumeMounts:
-     - mountPath: /aci/logs/
-       name: parasoftfiles
+      containers:
+      - name: file-share-demo
+        properties:
+          environmentVariables: []
+          image: mcr.microsoft.com/azuredocs/aci-hellofiles
+          ports:
+          - port: 80
+          resources:
+            requests:
+              cpu: 1.0
+              memoryInGB: 1.5
+          volumeMounts:
+          - mountPath: /aci/logs/
+            name: parasoftfiles
       osType: Linux
       restartPolicy: Always
       ipAddress:
@@ -48,7 +48,9 @@ steps:
           storageAccountName: adoproject
           storageAccountKey: liZ+KvFZBAgxHMDkb8z7MdV9NPFfma0M0EjtgFLG2Yk2InBwwkJXjGfpe5r6Ljexn8XKOnif1rrg+AStdt6c/w==
     tags: {}
-    type: Microsoft.ContainerInstance/containerGroups" >>deploy-aci.yml
+    type: Microsoft.ContainerInstance/containerGroups
+EOF
+
     
     az login
     az container create --resource-group ADOProject_group --file deploy-aci.yml
