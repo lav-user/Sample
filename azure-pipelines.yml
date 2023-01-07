@@ -40,7 +40,7 @@ steps:
         type: Public
         ports:
           - port: 80
-        dnsNameLabel: aci-demo
+        dnsNameLabel: aci-demo1234
       volumes:
       - name: parasoftfiles
         azureFile:
