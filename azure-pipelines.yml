@@ -112,9 +112,11 @@ steps:
     -settings /temp/soatestcli.properties \
     -report /temp \
     -publish" \
+    echo "stopping container"
     az container stop --name  file-share-demo --resource-group ADOProject_group
+    echo "deleting container"
     az container delete --resource-group ADOProject_group --name file-share-demo
-    y
+    --yes
     docker ps \
     echo -e "\nDebug -- Verify ./temp contents\n"
     
